@@ -27,7 +27,7 @@ namespace percentage_calculator
 
             while (names != 'Y' && names != 'N')
             {
-                Console.WriteLine("named values? y/n");
+                Console.WriteLine("named values? Y/N");
                 try
                 {
                     names = Convert.ToChar(Console.ReadLine().ToUpper());
@@ -38,7 +38,7 @@ namespace percentage_calculator
                 }
             }
 
-            if (names == 'y')
+            if (names == 'Y')
             {
                 namesBool = true;
             }
@@ -66,16 +66,18 @@ namespace percentage_calculator
                         varListName[i] = (i + 1).ToString();
                     }
 
-                    Console.WriteLine($"give value of variable {varListName[i]}");
+                    while (varList[i] == 0)
+                    {
+                        Console.WriteLine($"give value of variable {varListName[i]}");
 
-                    try
-                    {
-                        varList[i] = int.Parse(Console.ReadLine());
-                    }
-                    catch (FormatException)
-                    {
-                        i--;
-                        Console.WriteLine("must be a number");
+                        try
+                        {
+                            varList[i] = int.Parse(Console.ReadLine());
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("must be a number");
+                        }
                     }
                 }
             }
@@ -85,7 +87,7 @@ namespace percentage_calculator
             {
                 sum = varList.Sum();
                 double percentage = Convert.ToDouble(varList[i]) / sum;
-                Console.WriteLine($"percentage value {varListName[i]} = {percentage:0.00%}");
+                Console.WriteLine($"percentage value {varListName[i]} = {percentage:0.00%} ({varList[i]})");
             }
 
             Console.WriteLine($"total is {sum}");
